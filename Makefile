@@ -3,70 +3,84 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csenand <csenand@student.42.fr>            +#+  +:+       +#+         #
+#    By: loulou <loulou@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 11:43:00 by csenand           #+#    #+#              #
-#    Updated: 2022/11/14 15:14:36 by csenand          ###   ########.fr        #
+#    Updated: 2023/07/14 10:51:38 by loulou           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#			***			GENERAL SYNTAX				***
-# 
-#	The general syntax of a Makefile rule is as follows:
-#
-#		target : dependency1 dependency2 ...
-#			[TAB] action1
-#			[TAB] action2
-#			...
-#
-#			***			SPECIAL CHARACTERS			***
-#
-#	Inside actions we can use:
-# 		$@ to represent the full target name of the current target
-# 		$? returns the dependencies that are newer than the current target
-# 		$* returns the text that corresponds to % in the target
-# 		$< returns the name of the first dependency
-# 		$^ returns the names of all the dependencies with space as the delimiter
-#
-#	** SOURCE : https://github.com/amjadmajid/Makefile	**
+# -- Executable's name -- #
+NAME		=	ftprintf.a
 
+# -- Compilation Flag -- #
 CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror
+# CFLAGS		=	-Wall -Wextra -Werror -Wunreachable-code -fsanitize=address -g
 
-CFLAGS		=	-Wall -Wextra -Werror -I.
+# -- Remove -- #
+RM			=	rm -rf
 
-NAME		=	libftprintf.a
+# -- Archive -- #
+AR			=	ar rcs
 
-SRC			= 	ft_len_ft.c ft_print_ft.c ft_printf.c ft_put_ft.c \
+# -- SRC Files -- #
+SRCS_DIR	=	./srcs/
+SRCS_LST	= 	ft_len_ft.c ft_print_ft.c ft_printf.c ft_put_ft.c
 
-OBJ			= $(SRC:.c=.o)
+SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LST))
 
-RM			= rm -rf
+# -- OBJ Files -- #
+OBJS_DIR	=	./obj/
+OBJS_LST	=	$(patsubst %.c, %.o, $(SRCS_LST))
+OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LST))
 
-AR			= ar rcs 
+# -- HEADER Files -- #
+HEADER_DIR	=	./include/
+HEADER_LST	=	ft_printf.h
+HEADER	 	=	$(addprefix $(HEADER_DIR), $(HEADER_LST))
 
-# compile library
-$(NAME): $(OBJ)
-	$(AR) $@ $^
-	@echo "Libftprintf Done !"
+# -- Colors -- #
+RESET		= 	\033[0m
+RED			= 	\033[0;31m
+GREEN		= 	\033[0;32m
+YELLOW		= 	\033[0;33m
+BLUE		= 	\033[0;34m
+PURPLE		= 	\033[0;35m
+CYAN		= 	\033[0;36m
+ERASE_LINE 	= 	\033[2K\r
 
-# create all files .o (object) from files .c (source code)
-%.o : %.c
-	$(CC) $(CFLAGS) -c $^ -o $@
+# -- Executable's creation -- #
+all : dir $(NAME)
 
-# creer "l'executable" 
-all : $(NAME)
+# -- Compile library -- #
+$(NAME): $(OBJS)
+	@$(AR) $(NAME) $(OBJS)
+	@echo "✅ $(GREEN)Ft_printf successfully created.\t\t\t✅$(RESET)"
 
-# Removes objects
+# -- Create all files .o (object) from files .c (source code) -- #
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
+	@printf "🎛️  $(PURPLE)Compilation of $(YELLOW)$(notdir $<)\r$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# -- Create directory for *.o files -- #
+dir:
+	@mkdir -p $(OBJS_DIR)
+
+# -- Removes objects -- #
 clean :
-	@echo "Removing $(NAME) objects..."
-	$(RM) $(OBJ) $(OBJ_BONUS)
-	@echo "$(NAME) objects successfully deleted."
+	@printf "💥 $(RED)Removing $(NAME)'s objects... $(RESET)\t\t\t💥\n"
+	@$(RM) $(OBJS_DIR)
+	@printf "🗑️  $(CYAN)ft_printf's object successfully deleted.$(RESET)\t\t🗑️\n"
 
-# Removes objects (with clean) and executable
+# -- Removes objects (with clean) and executable -- #
 fclean : clean
-	@echo "Removing $(NAME) program..."
-	$(RM) $(NAME)
-	@echo "Executable(s) and archive(s) successfully deleted."
+	@printf "💥 $(RED)Removing $(NAME)'s executable... $(RESET)\t\t\t💥\n"
+	@$(RM) $(NAME)
+	@printf "🗑️  $(CYAN)Executable(s) and archive(s) successfully deleted.$(RESET)\t🗑️\n"
 
-# Removes objects and executable then remakes all
+# -- Removes objects and executable then remakes all -- #
 re : fclean all
+
+# -- Avoid file-target name conflicts -- #
+.PHONY: all bonus clean fclean re

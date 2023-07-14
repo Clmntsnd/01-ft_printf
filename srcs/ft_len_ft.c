@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_len_ft.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csenand <csenand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loulou <loulou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:07:17 by csenand           #+#    #+#             */
-/*   Updated: 2022/11/14 14:43:46 by csenand          ###   ########.fr       */
+/*   Updated: 2023/07/14 10:48:10 by loulou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 /*
 **	size_t	ft_strlen(const char *s);

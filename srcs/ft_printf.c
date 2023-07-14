@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csenand <csenand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loulou <loulou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:58:12 by csenand           #+#    #+#             */
-/*   Updated: 2022/11/16 11:26:54 by csenand          ###   ########.fr       */
+/*   Updated: 2023/07/14 10:48:22 by loulou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 **	An int which is the nbr of characters in the output
 */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static	int	ft_print_data(va_list list, char c);
 

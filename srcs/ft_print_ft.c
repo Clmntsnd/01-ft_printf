@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ft.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csenand <csenand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loulou <loulou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:12:12 by csenand           #+#    #+#             */
-/*   Updated: 2022/11/14 14:51:39 by csenand          ###   ########.fr       */
+/*   Updated: 2023/07/14 10:48:15 by loulou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 /*
 **	int	ft_print_u(long n);

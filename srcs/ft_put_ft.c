@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_ft.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csenand <csenand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loulou <loulou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:59:44 by csenand           #+#    #+#             */
-/*   Updated: 2022/11/22 11:53:58 by csenand          ###   ########.fr       */
+/*   Updated: 2023/07/14 10:48:36 by loulou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-/*
-**	int		ft_putchar_fd(char c, int fd);
-**	int		ft_putstr_fd(char *s, int fd);
-**	int		ft_putnbr_fd(int n, int fd);
-**	void	ft_put_hex(unsigned int num, const char form_x);
-**	void	ft_put_ptr(uintptr_t num);
-*/
+#include "../include/ft_printf.h"
 
 int	ft_putchar_fd(char c, int fd)
 {
